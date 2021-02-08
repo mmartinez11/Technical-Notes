@@ -54,5 +54,8 @@ int main()
    //The method to access the inner values
    cout << c[0].y << endl;
    
+   //Delete array (new)
+   delete[] c;
+    
    return 0;
 }
