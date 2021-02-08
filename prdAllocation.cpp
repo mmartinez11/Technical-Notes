@@ -26,8 +26,8 @@ class paperClip{
             cout << "(C) Would You Like Help?" << endl;
         }
         
-        //Destructor (Only Manually Called if there is allocated memory)
-        ~paperClip();
+        //Destructor (Only Manually Called if there is dynamically allocated memory)
+        //~paperClip();
 };
 
 int main()
@@ -48,21 +48,31 @@ int main()
    
   //A reference cannot be reassigned
   //Ex. &b = c;
-  //But it can be assigned a new value via raw value/variable
+  //But it can be assigned a new value (ONLY! NO ADDRESSES) via raw value/variable
   int c = 10;
   b = c;
   
   cout << "(R) Variable b is: " << b << endl;
+    
+  //NOTE: The (&) has different meanings depending on LHS or RHS position
+  //A reference can only be used while being DECLARED on the LHS
+  int &p = b;
+  
+  //If the (&) is used on the RHS or anywhere with no declarion then it is
+  //The address of that variable. (Used in a EXPRESSION)
+  
+  //The address of a reference can be known
+  cout << "(R) Address of p is: " << &p << endl;
   
 //---------Working with Pointers------------------------------------------------
 
   cout << "|Working With Pointers|" << endl;
 
-  //The (&) used independtly will always refer to an address
+  //The (&) used independtly will always refer to an address (Mentioned Above)
   int m = 16;
   cout << "(P) Variable m is: " << &m << endl;
 
-  //The address of a variable/object can be assigned to another variable
+  //The address of a variable/object can be assigned to another variable via pointer
   //NOT LIKE THIS: int n = &m;
   //You need to use a pointer 
   int *n = &m;
@@ -77,6 +87,18 @@ int main()
   int o = 77;
   n = &o;
   cout << "(P) Variable n is: " << *n << endl;
+  
+  //NOTE: The (*) operator has a different meaning if its used RHS or LHS
+  
+  //If (*) is declared then it is a pointer
+  int *ab = &o;
+  
+  //If (*) is used in an expression then it refers to the value pointed to by the pointer variable.
+  //i.e LHS or Isolated position
+  
+  //This way allows for the pointer value to be changed
+  *ab = 99;
+  cout << "(P) Variable ab is: " << *ab << endl;
   
 //---------Working with Classes-------------------------------------------------
 
@@ -111,3 +133,7 @@ int main()
   
    return 0;
 }
+
+//INDEX:
+    //-> LHS: Left Hand Side
+    //-> RHS: Right Hand Side
