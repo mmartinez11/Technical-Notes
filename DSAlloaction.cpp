@@ -67,7 +67,11 @@ int main()
    //The method to access the inner values
    cout << "(7) The value of x is: " << b[0].x << endl;
    
+    //NOTE: Only points to the first struct in array
    cout << "(8) The value of y is: " << b->y << endl;
+    
+    //Get the address of the variable inside the struct
+   cout << "(8.5) The adress of y is: " << &b->y << endl;
    
 //---------Allocation of Pointers-----------------------------------------------
 
