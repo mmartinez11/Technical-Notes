@@ -1,0 +1,91 @@
+GitHub
+We will be using GitHub for turning in the projects - https://github.com/
+
+If you don't have a git account yet you should sign up for one
+
+You (or your group if we are doing groups) should create a repository for each project.
+
+Some Tutorials
+GitHub has their own getting started page which is a nice intro - https://guides.github.com/activities/hello-world/
+
+
+
+This is a nice intro for the basics - https://rubygarage.org/blog/most-basic-git-commands-with-examples
+
+Quick Command List - https://rogerdudler.github.io/git-guide/
+
+GitHub and Unity - https://thoughtbot.com/blog/how-to-git-with-unity
+
+At minimum you will be using git to turn in all your code and assets in your Unity project, but I would also recommend regularly updating your code on git so there is some 
+external proof of when you submitted, as well as having backup copies at various checkpoints. Git can also be useful in its typical role for group projects, though that does 
+require some tweaks for it to play nice with unity. Note that git can also be a nice place to store a copy of your website files to prove they were done on time, and you can 
+host your website for your project on git as well if you prefer. Note that I would not rely solely on Git for backing up your projects - keep multiple backups in multiple 
+places.
+
+For example I could take my Vuforia project above and move it up to a new git repository:
+
+(I updated this sequence in mid September to be more space efficient so it should take up much less space and be much faster to update as it should ignore many more files 
+that we don't need to put on git. The previous sequence still works, but this is a better one to use going forward.)
+
+- I already have a Git account so I can use my favorite web browser to go to github.com and sign in and use the + in the upper right corner to add a New repository
+- I can give it a name like Week1, make it private for now, and add a .gitignore file of type Unity. Then I click the green button to create the repository
+- Keep this tab open in your browser - we will come back to it.
+
+- Back in my Unity project I need to set things up so the project plays nice with git so I am going to Edit the Project Settings for the Editor. Version Control Mode 
+should be Visible Meta Files, and Asset Serialization Mode should be Force Text.
+
+- Go to the terminal and change the current directory to the one for your Unity project, e.g. cd Documents/unity folder/428F20P1
+
+- If you look at the files in that directory you should see an Assets folder, Packages, Logs, etc. type git init to create a new .git folder. 
+
+- Now we need to link this local repository to GitHub so if you go back to GitHub and look at the Code tab and then click on the green Code button you can get the https 
+link which will look something like https://github.com/YourGitAccountName/YourGitProjectName.git - back in the terminal you can use the command git remote add origin 
+https://github.com/YourGitAccountName/YourGitProjectName.git so in my case git remote add origin https://github.com/andyevl/Week1.git
+- Before we can push our project code up to GitHub we need to pull that .gitignore file we added to the repository when we created it. 
+The .gitignore file tells git not to backup files that Unity can recreate (Library, Temp, Build, etc.) which will save a lot of space in Git, 
+but will increase the time when you open the project for the first time. We can do that with the command git pull origin master --allow-unrelated-histories
+
+    after October 1 2020 instead you should: git pull origin main --allow-unrelated-histories
+
+- You can then add all the files to the list to be tracked with git add --all
+- You can then commit the changes with an initial comment (feel free to modify the comment) with git commit -m 'starter project'
+
+- You can check the status with git status. Status is helpful to tell you which files are being tracked, and which are untracked, which have been modified, etc.
+
+   - Another helpful command with the recent switch from master to main is git branch. This gives you the name of the branch you are linked to. After October 2020 it 
+   should be 'main'. if it is 'master' then a handy command is git branch -mv master main to rename the branch to main in order to match Git's new default.
+
+- Now we can finally push our code up onto GitHub with git push origin master
+
+    after October 1 2020 instead you should: git push origin main
+
+- This will be slightly unhappy since it wants a comment but you can just save out of the editor.
+
+- If you now go back to GitHub and refresh the page you should see a lot more files there with their modification dates.
+
+- Whenever you want to update the repository at GitHub with your latest version you would go to the top level of your Unity project directory and type this 
+sequence to update only those files that have changed (or added to the repository):
+
+- git add --all
+- git commit -m 'new comment for this version'
+- git push origin master
+
+    after October 1 2020 instead you should: git push origin main
+
+- At some point if you have files that are too big (> 100 MB) then your push will fail with an error telling you which files are too big. 
+We can get around this by installing Git Large File Storage, so follow the instructions at this link for your platform: 
+https://docs.github.com/en/github/managing-large-files/installing-git-large-file-storage - Once it is installed correctly you should be able to 
+type git lfs install from your terminal and see Git LFS Initialized.
+
+We can tell LFS to track these files with git lfs track <filename> and then make sure that the new .gitattributes file is tracked with git add 
+.gitattributes - note that you need to tell LFS track files before you git add them or you have to git lfs migrate those big files over to LFS. 
+If you want to stop tracking something in LFS then you can give the command git lfs untrack <filename> and then you can go back and add them to 
+LFS if you want to make them available on GitHub, or add them to the ignore list if you don't want to store them on GitHub. There is a pretty good 
+discussion of this here. Note that LFS is limited to 1gig of storage and 1 gig of downloads per month.
+
+- At the alpha deadline you will add the TA as a member of your team to be able to look at your code. For the final submission you should make your 
+project public  so everyone can look at everyone else's code. Before each of those dates you should re-download your Project from GitHub to make sure it works. 
+Probably the easiest way to do this is to try and Download Zip from under the green Code button, put it into a new directory on your computer, and try to add it to 
+Unity Hub and start it up in Unity to make sure everything made it to and from GitHub correctly.
+
+- If you find you need to remove a file from LFS to get some space back then you can use the command git lfs migrate export --include <filename?>
