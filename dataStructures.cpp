@@ -1,15 +1,5 @@
-#include <iostream>
+Vector:
 
-using namespace std;
+  Methods:
 
-
-int main()
-{
-  
-  
-  
-  
-  
-  return 0;
-  
-}
+      
