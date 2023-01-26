@@ -16,8 +16,11 @@
 * For edditing a SQL server database tables the DAC-PAC must first be edited and released. 
 * For inserting or deleting values from a database the ADHOC release must contain the specific sql script that you will want to execute.
 * DACPAC runs for every table even if it has not been changed. The ADHOC will only execute a singular script that is assigned by a release variable. 
-# Azure
-* TBD
+# Azure DevOps
+* Azure DevOps is a multiplatform service that allows the organization and repositories of programs. Including being a build pipeline.
+* Build Pipeline:
+> Azure DevOps provides pipeline functionality. This allows you to be able to deploy programs into various different enviroments.
+> Pipelines 
 # Program Breakdown
 * TDB
 # API 
